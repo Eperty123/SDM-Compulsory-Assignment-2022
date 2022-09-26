@@ -39,7 +39,17 @@ namespace MovieRatingExample.Application
 
         public double GetAverageRateOfMovie(int movie)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            int score = 0;
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Movie == movie)
+                {
+                    count++;
+                    score += review.Grade;
+                }
+            }
+            return score > 0 ? score / count : 0;
         }
 
         public List<int> GetMostProductiveReviewers()
@@ -49,22 +59,76 @@ namespace MovieRatingExample.Application
 
         public List<int> GetMoviesWithHighestNumberOfTopRates()
         {
-            throw new NotImplementedException();
+            var ids = new Dictionary<int, int>();
+
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Grade == 5)
+                {
+                    if (!ids.ContainsKey(review.Movie))
+                        ids.Add(review.Movie, 1);
+                    else
+                    {
+                        ids[review.Movie]++;
+                    }
+                }
+            }
+
+            //var collection = new Dictionary<int, int>();
+            int highestNumber = 0;
+            foreach (var entry in ids)
+            {
+                var foundAmount = entry.Value;
+
+                if (foundAmount > highestNumber)
+                    highestNumber = foundAmount;
+
+            }
+
+            var result = new List<int>();
+            foreach (var entry in ids)
+            {
+                var movieId = entry.Key;
+                var foundAmount = entry.Value;
+
+                if (foundAmount == highestNumber)
+                    result.Add(movieId);
+            }
+
+            return result;
         }
 
         public int GetNumberOfRates(int movie, int rate)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Movie == movie && review.Grade == rate)
+                    count++;
+            }
+            return count;
         }
 
         public int GetNumberOfRatesByReviewer(int reviewer, int rate)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Reviewer == reviewer && review.Grade == rate)
+                    count++;
+            }
+            return count;
         }
 
         public int GetNumberOfReviews(int movie)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Movie == movie)
+                    count++;
+            }
+            return count;
         }
 
         public int GetNumberOfReviewsFromReviewer(int reviewer)
