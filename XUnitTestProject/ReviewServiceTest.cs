@@ -62,5 +62,32 @@ namespace XUnitTestProject
             Assert.Equal(expectedResult, result);
             mockRepository.Verify(r => r.GetAll(), Times.Once);
         }
+
+        [Theory]
+        [InlineData(1, 3)]
+        [InlineData(2, 3)]
+        [InlineData(3, 0)]
+        public void GetAverageRateFromReviewer(int reviewer, double expectedResult)
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=1, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=5, ReviewDate = new DateTime()},
+            };
+
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            // Act
+            double result = service.GetAverageRateFromReviewer(reviewer);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+            mockRepository.Verify(r => r.GetAll(), Times.Once);
+        }
     }
 }

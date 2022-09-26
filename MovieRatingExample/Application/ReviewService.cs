@@ -24,7 +24,17 @@ namespace MovieRatingExample.Application
 
         public double GetAverageRateFromReviewer(int reviewer)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            int score = 0;
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Reviewer == reviewer)
+                {
+                    count++;
+                    score += review.Grade;
+                }
+            }
+            return score > 0 ? score / count : 0;
         }
 
         public double GetAverageRateOfMovie(int movie)
