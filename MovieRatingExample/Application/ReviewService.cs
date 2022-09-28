@@ -54,7 +54,41 @@ namespace MovieRatingExample.Application
 
         public List<int> GetMostProductiveReviewers()
         {
-            throw new NotImplementedException();
+            var ids = new Dictionary<int, int>();
+
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (!ids.ContainsKey(review.Reviewer))
+                    ids.Add(review.Reviewer, 1);
+                else
+                {
+                    ids[review.Reviewer]++;
+                }
+
+            }
+
+            //var collection = new Dictionary<int, int>();
+            int highestNumber = 0;
+            var result = new List<int>();
+
+            foreach (var entry in ids)
+            {
+                var foundAmount = entry.Value;
+                var reviewerId = entry.Key;
+
+                if (foundAmount > highestNumber)
+                {
+                    highestNumber = foundAmount;
+                    result.Clear();
+                    result.Add(reviewerId);
+                }
+                else if (foundAmount == highestNumber)
+                {
+                    result.Add(reviewerId);
+                }
+            }
+
+            return result;
         }
 
         public List<int> GetMoviesWithHighestNumberOfTopRates()
@@ -76,23 +110,23 @@ namespace MovieRatingExample.Application
 
             //var collection = new Dictionary<int, int>();
             int highestNumber = 0;
+            var result = new List<int>();
+
             foreach (var entry in ids)
             {
                 var foundAmount = entry.Value;
+                var movieId = entry.Key;
 
                 if (foundAmount > highestNumber)
+                {
                     highestNumber = foundAmount;
-
-            }
-
-            var result = new List<int>();
-            foreach (var entry in ids)
-            {
-                var movieId = entry.Key;
-                var foundAmount = entry.Value;
-
-                if (foundAmount == highestNumber)
+                    result.Clear();
                     result.Add(movieId);
+                }
+                else if (foundAmount == highestNumber)
+                {
+                    result.Add(movieId);
+                }
             }
 
             return result;
@@ -154,7 +188,16 @@ namespace MovieRatingExample.Application
 
         public List<int> GetTopRatedMovies(int amount)
         {
-            throw new NotImplementedException();
+            var ids = new Dictionary<int, double>();
+
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (!ids.ContainsKey(review.Movie))
+                    ids.Add(review.Movie, GetAverageRateOfMovie(review.Movie));
+            }
+
+            var sortedByScoreDict = ids.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return sortedByScoreDict.Keys.Take(amount).ToList();
         }
     }
 }
