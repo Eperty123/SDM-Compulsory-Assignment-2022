@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Reviewer": 1,
+    "Movie": 1488844,
+    "Grade": 3,
+    "Date": "2005-09-06"
+  },
+  {
+    "Reviewer": 1,
+    "Movie": 822109,
+    "Grade": 5,
+    "Date": "2005-05-13"
+  },
+  {
+    "Reviewer": 1,
+    "Movie": 885013,
+    "Grade": 4,
+    "Date": "2005-10-19"
+  },
+  {
+    "Reviewer": 1,
+    "Movie": 30878,
+    "Grade": 4,
+    "Date": "2005-12-26"
+  },
+  {
+    "Reviewer": 1,
+    "Movie": 823519,
+    "Grade": 3,
+    "Date": "2004-05-03"
+  }
+]
