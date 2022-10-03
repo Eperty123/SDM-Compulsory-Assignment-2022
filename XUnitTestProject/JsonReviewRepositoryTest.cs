@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MovieRatingExample.Core.Models;
+using MovieRatingExample.Infrastructure.Data.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +11,10 @@ namespace XUnitTestProject
     public class JsonReviewRepositoryTest
     {
         [Fact]
-        public void JsonReviewReadTest()
+        public void JsonReviewReadNotNullTest()
         {
-
+            var reviews = File.ReadAllText("Resources/ratings.json").FromJson<BEReview[]>();
+            Assert.NotNull(reviews);
         }
     }
 }

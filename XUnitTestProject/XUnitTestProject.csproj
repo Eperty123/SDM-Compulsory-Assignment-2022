@@ -26,6 +26,13 @@
   <ItemGroup>
     <ProjectReference Include="..\MovieRatingExample.Core\MovieRatingExample.Core.csproj" />
     <ProjectReference Include="..\MovieRatingExample.Domain\MovieRatingExample.Domain.csproj" />
+    <ProjectReference Include="..\MovieRatingExample.Infrastructure.Data\MovieRatingExample.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\ratings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
