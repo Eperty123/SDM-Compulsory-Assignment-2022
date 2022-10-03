@@ -3,9 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRatingExample", "MovieRatingExample\MovieRatingExample.csproj", "{9ECD5DE2-490B-476A-B708-A5DCE3564C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{7C22C153-4CC9-453E-A443-212E2446060D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{7C22C153-4CC9-453E-A443-212E2446060D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRatingExample.Core", "MovieRatingExample.Core\MovieRatingExample.Core.csproj", "{E532F4B4-50B2-4441-9308-60687EA5A004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRatingExample.Infrastructure.Data", "MovieRatingExample.Infrastructure.Data\MovieRatingExample.Infrastructure.Data.csproj", "{825DA0A5-CBE0-4F22-A364-39573538380A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRatingExample.Domain", "MovieRatingExample.Domain\MovieRatingExample.Domain.csproj", "{83E3445F-ABFE-455A-A399-9BFC13FAAFE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7893B89E-69F3-4B8E-9783-77C615075993}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FF582D63-0285-48FC-B168-B0FD24CDA40E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{56241900-D9AE-46A0-81CC-3293C9C99894}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +23,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9ECD5DE2-490B-476A-B708-A5DCE3564C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9ECD5DE2-490B-476A-B708-A5DCE3564C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9ECD5DE2-490B-476A-B708-A5DCE3564C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9ECD5DE2-490B-476A-B708-A5DCE3564C72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C22C153-4CC9-453E-A443-212E2446060D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C22C153-4CC9-453E-A443-212E2446060D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C22C153-4CC9-453E-A443-212E2446060D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C22C153-4CC9-453E-A443-212E2446060D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E532F4B4-50B2-4441-9308-60687EA5A004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E532F4B4-50B2-4441-9308-60687EA5A004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E532F4B4-50B2-4441-9308-60687EA5A004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E532F4B4-50B2-4441-9308-60687EA5A004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{825DA0A5-CBE0-4F22-A364-39573538380A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825DA0A5-CBE0-4F22-A364-39573538380A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825DA0A5-CBE0-4F22-A364-39573538380A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825DA0A5-CBE0-4F22-A364-39573538380A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E3445F-ABFE-455A-A399-9BFC13FAAFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E3445F-ABFE-455A-A399-9BFC13FAAFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E3445F-ABFE-455A-A399-9BFC13FAAFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E3445F-ABFE-455A-A399-9BFC13FAAFE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E532F4B4-50B2-4441-9308-60687EA5A004} = {7893B89E-69F3-4B8E-9783-77C615075993}
+		{825DA0A5-CBE0-4F22-A364-39573538380A} = {56241900-D9AE-46A0-81CC-3293C9C99894}
+		{83E3445F-ABFE-455A-A399-9BFC13FAAFE6} = {FF582D63-0285-48FC-B168-B0FD24CDA40E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAED36C3-19FC-4AA0-AC9F-C4A76173188D}

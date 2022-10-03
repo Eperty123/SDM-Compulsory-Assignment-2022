@@ -1,13 +1,8 @@
-﻿using MovieRatingExample.Core.Model;
-using MovieRatingExample.Core.Repositories;
-using MovieRatingExample.Core.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieRatingExample.Core.IServices;
+using MovieRatingExample.Core.Models;
+using MovieRatingExample.Domain.IRepositories;
 
-namespace MovieRatingExample.Application
+namespace MovieRatingExample.Domain.Services
 {
     public class ReviewService : IReviewService
     {

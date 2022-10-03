@@ -1,8 +1,8 @@
 using Moq;
-using MovieRatingExample.Application;
-using MovieRatingExample.Core.Model;
-using MovieRatingExample.Core.Repositories;
-using MovieRatingExample.Core.Service;
+using MovieRatingExample.Core.IServices;
+using MovieRatingExample.Core.Models;
+using MovieRatingExample.Domain.IRepositories;
+using MovieRatingExample.Domain.Services;
 using Xunit.Abstractions;
 
 namespace XUnitTestProject

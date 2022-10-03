@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieRatingExample.Core.Model
+namespace MovieRatingExample.Core.Models
 {
     public class BEReview
     {
