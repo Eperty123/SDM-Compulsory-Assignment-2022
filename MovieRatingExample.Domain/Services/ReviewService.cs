@@ -1,6 +1,8 @@
 ﻿using MovieRatingExample.Core.IServices;
 using MovieRatingExample.Core.Models;
 using MovieRatingExample.Domain.IRepositories;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MovieRatingExample.Domain.Services
 {
@@ -173,16 +175,34 @@ namespace MovieRatingExample.Domain.Services
 
         public List<int> GetReviewersByMovie(int movie)
         {
-            throw new NotImplementedException();
+            var reviews = new List<BEReview>();
+
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Movie == movie)
+                    reviews.Add(review);
+            }
+
+            return reviews.OrderByDescending(x => x.Grade).ThenBy(x => x.ReviewDate).Select(x => x.Reviewer).ToList();
         }
 
         public List<int> GetTopMoviesByReviewer(int reviewer)
         {
-            throw new NotImplementedException();
+            var reviews = new List<BEReview>();
+
+            foreach (BEReview review in Repository.GetAll())
+            {
+                if (review.Reviewer == reviewer)
+                    reviews.Add(review);
+            }
+
+            return reviews.OrderByDescending(x => x.Grade).ThenBy(x => x.ReviewDate).Select(x => x.Movie).ToList();
         }
 
         public List<int> GetTopRatedMovies(int amount)
         {
+            if (amount < 1) throw new ArgumentException("Amount must be 1 or bigger");
+
             var ids = new Dictionary<int, double>();
 
             foreach (BEReview review in Repository.GetAll())

@@ -402,5 +402,98 @@ namespace XUnitTestProject
             Assert.True(IsListIdentical(expectedResult, result));
             mockRepository.Verify(r => r.GetAll(), Times.AtLeastOnce);
         }
+
+        [Fact]
+        public void GetTopRatedMoviesInvalidInput()
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=2, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=4, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=5, ReviewDate = new DateTime()},
+            };
+
+            int amount = -1;
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            // Act + assert
+            var ex = Assert.Throws<ArgumentException>(() => service.GetTopRatedMovies(amount));
+
+            Assert.Equal("Amount must be 1 or bigger", ex.Message);
+            mockRepository.Verify(r => r.GetAll(), Times.Never);
+        }
+
+        [Fact]
+        public void GetTopMoviesByReviewer()
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=2, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=4, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 3, Grade=5, ReviewDate = new DateTime(2019,05,08)},
+                new BEReview() {Reviewer = 1, Movie = 4, Grade=5, ReviewDate = new DateTime(2019,05,09) },
+            };
+
+            List<int> expectedResult = new List<int>
+            {
+                3,
+                4,
+                2,
+                1
+            };
+
+            int reviewerId = 1;
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            // Act
+            List<int> result = service.GetTopMoviesByReviewer(reviewerId);
+
+            // Assert
+            Assert.True(IsListIdentical(expectedResult, result));
+            mockRepository.Verify(r => r.GetAll(), Times.Once);
+        }
+
+        [Fact]
+        public void GetReviewersByMovie()
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=2, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=4, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 3, Movie = 1, Grade=5, ReviewDate = new DateTime(2019,05,08)},
+                new BEReview() {Reviewer = 4, Movie = 1, Grade=5, ReviewDate = new DateTime(2019,05,09) },
+            };
+
+            List<int> expectedResult = new List<int>
+            {
+                3,
+                4,
+                2,
+                1
+            };
+
+            int movieId = 1;
+
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            // Act
+            List<int> result = service.GetReviewersByMovie(movieId);
+
+            // Assert
+            Assert.True(IsListIdentical(expectedResult, result));
+            mockRepository.Verify(r => r.GetAll(), Times.Once);
+        }
     }
 }
